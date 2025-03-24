@@ -21,8 +21,12 @@
     <div class="main-content">
       <div class="product-showcase">
         <div class="app-screenshots">
-          <img src="assets/images/image1.jpg" alt="Normal Imaging" class="app-screenshot" />
-          <img src="assets/images/image2.jpg" alt="Thermal Imaging" class="app-screenshot" />
+          <a href="#" class="image-link" data-bs-toggle="modal" data-bs-target="#imageModal" data-image="assets/images/image1.jpg">
+            <img src="assets/images/image1.jpg" alt="Normal Imaging" class="app-screenshot" />
+          </a>
+          <a href="#" class="image-link" data-bs-toggle="modal" data-bs-target="#imageModal" data-image="assets/images/image2.jpg">
+            <img src="assets/images/image2.jpg" alt="Thermal Imaging" class="app-screenshot" />
+          </a>
         </div>
         <div class="mission-statement">
           <h2>
@@ -66,8 +70,25 @@
 
     <div id="footer-container"></div>
 
+    <!-- Modal for viewing images in full screen -->
+    <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="imageModalLabel">Image Preview</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <img id="modalImage" src="" alt="Full Screen Image" class="img-fluid" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
     <script>
-      document.addEventListener('DOMContentLoaded', function() {
+      document.addEventListener('DOMContentLoaded', function () {
         fetch('assets/layout/navbar.html')
           .then(response => {
             if (!response.ok) {
@@ -81,10 +102,7 @@
           .catch(error => {
             console.error('Error:', error);
           });
-      });
-    </script>    
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
+
         fetch('assets/layout/footer.html')
           .then(response => {
             if (!response.ok) {
@@ -98,28 +116,16 @@
           .catch(error => {
             console.error('Error:', error);
           });
-      });
-    </script>  
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const menuToggle = document.getElementById("menuToggle");
-        const mainNav = document.getElementById("mainNav");
 
-        menuToggle.addEventListener("click", function () {
-          mainNav.classList.toggle("active");
-        });
-
-        const navLinks = document.querySelectorAll("nav ul li a");
-        navLinks.forEach((link) => {
-          link.addEventListener("click", function () {
-            mainNav.classList.remove("active");
+        // Image modal functionality
+        const imageLinks = document.querySelectorAll('.image-link');
+        imageLinks.forEach(link => {
+          link.addEventListener('click', function (e) {
+            e.preventDefault(); // Prevent default action
+            const imageUrl = this.getAttribute('data-image');
+            const modalImage = document.getElementById('modalImage');
+            modalImage.src = imageUrl; // Set the modal image to the clicked image source
           });
-        });
-
-        document.addEventListener("click", function (event) {
-          if (!event.target.closest("nav") && !event.target.closest(".menu-toggle")) {
-            mainNav.classList.remove("active");
-          }
         });
       });
     </script>

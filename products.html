@@ -4,7 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="assets/css/carousel.css" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <title>Obscura - Thermal Imaging Solutions</title>
   </head>
@@ -15,84 +18,146 @@
         <span>bscura</span>
       </a>
       <button class="menu-toggle" id="menuToggle">☰</button>
-      <div id="navbar-container"></div>
+      <nav id="mainNav">
+        <ul class="navvy">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="products.html">Products</a></li>
+          <li><a href="about.html">About us</a></li>
+          <li><a href="help.html">Help</a></li>
+        </ul>
+      </nav>
+
+      <script>
+        // Mobile menu toggle functionality
+        document.addEventListener("DOMContentLoaded", function () {
+          const menuToggle = document.getElementById("menuToggle");
+          const mainNav = document.getElementById("mainNav");
+
+          menuToggle.addEventListener("click", function () {
+            mainNav.classList.toggle("active");
+          });
+
+          // Close menu when clicking a link
+          const navLinks = document.querySelectorAll("nav ul li a");
+          navLinks.forEach((link) => {
+            link.addEventListener("click", function () {
+              mainNav.classList.remove("active");
+            });
+          });
+
+          // Close menu when clicking outside
+          document.addEventListener("click", function (event) {
+            if (
+              !event.target.closest("nav") &&
+              !event.target.closest(".menu-toggle")
+            ) {
+              mainNav.classList.remove("active");
+            }
+          });
+
+          // Highlight the current page in the menu based on URL
+          const currentUrl = window.location.pathname;
+          const navItems = document.querySelectorAll("nav ul li a");
+
+          navItems.forEach((link) => {
+            if (link.getAttribute("href") === currentUrl) {
+              link.classList.add("active");
+            }
+          });
+        });
+      </script>
     </header>
 
     <div class="main-content">
-        <h2>Products</h2>
+      <h1>Obscura Detection System</h1>
+      <p>Innovative Technology for Search and Recovery</p>
+
+      <div class="content">
+        <section class="intro-text">
+          <p>
+            Our human remains detection technology, <strong>Obscura</strong>, is
+            a handheld thermal-based system that identifies possible locations
+            of human remains using thermal imaging and infrared light. The
+            system uses a smartphone connected to a thermal camera and an IR
+            flashlight, enabling field operatives to detect subtle temperature
+            differences that may indicate buried or concealed human remains.
+            Designed to support search-and-recovery operations, Obscura offers a
+            compact, affordable, and accessible alternative to conventional
+            methods.
+          </p>
+          <p>
+            This tool can aid forensic teams, disaster responders, and
+            humanitarian missions by enhancing visibility in critical
+            situations.
+          </p>
+        </section>
+
+        <div class="product-section">
+          <!-- Smartphone-Connected System Section -->
+          <div class="product-card">
+            <img
+              src="assets/images/carousel/smartphone.jpg"
+              alt="Smartphone Connected System"
+            />
+            <h3>Smartphone-Connected System</h3>
+            <p>
+              Using an Android smartphone as the central processing device
+              allows for a familiar interface and leverages existing mobile
+              technology to reduce cost and improve accessibility.
+            </p>
+          </div>
+          <!-- Thermal Camera Section -->
+          <div class="product-card">
+            <img
+              src="assets/images/carousel/thermalcam.jpg"
+              alt="Thermal Camera"
+            />
+
+            <h3>Thermal Camera</h3>
+            <p>
+              The compact USB-C thermal camera provides accurate surface
+              temperature detection. It's small, lightweight, and compatible
+              with most Android devices, making it ideal for fieldwork.
+            </p>
+          </div>
+          <!-- Infrared Flashlight Section -->
+          <div class="product-card">
+            <img
+              src="assets/images/carousel/infraflash.jpg"
+              alt="Infrared Flashlight"
+            />
+            <h3>Infrared Flashlight</h3>
+            <p>
+              An external IR flashlight boosts the visibility of heat signatures
+              in dark environments or shaded areas. It enhances the detection
+              range and accuracy, especially during nighttime operations.
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
 
     <div id="footer-container"></div>
 
     <script>
       // Wait for the DOM to be fully loaded
-      document.addEventListener('DOMContentLoaded', function() {
-        // Fetch the navbar.html file
-        fetch('assets/layout/navbar.html')
-          .then(response => {
-            // Check if the file was fetched successfully
-            if (!response.ok) {
-              throw new Error('Failed to load navbar');
-            }
-            return response.text();
-          })
-          .then(data => {
-            // Insert the fetched HTML into the navbar-container
-            document.getElementById('navbar-container').innerHTML = data;
-          })
-          .catch(error => {
-            console.error('Error:', error);
-          });
-      });
-    </script>    
-    <script>
-      // Wait for the DOM to be fully loaded
-      document.addEventListener('DOMContentLoaded', function() {
-        // Fetch the navbar.html file
-        fetch('assets/layout/footer.html')
-          .then(response => {
-            // Check if the file was fetched successfully
-            if (!response.ok) {
-              throw new Error('Failed to load navbar');
-            }
-            return response.text();
-          })
-          .then(data => {
-            // Insert the fetched HTML into the navbar-container
-            document.getElementById('footer-container').innerHTML = data;
-          })
-          .catch(error => {
-            console.error('Error:', error);
-          });
-      });
-    </script>  
-    <script>
-      // Mobile menu toggle functionality
       document.addEventListener("DOMContentLoaded", function () {
-        const menuToggle = document.getElementById("menuToggle");
-        const mainNav = document.getElementById("mainNav");
-
-        menuToggle.addEventListener("click", function () {
-          mainNav.classList.toggle("active");
-        });
-
-        // Close menu when clicking a link
-        const navLinks = document.querySelectorAll("nav ul li a");
-        navLinks.forEach((link) => {
-          link.addEventListener("click", function () {
-            mainNav.classList.remove("active");
+        // Fetch the navbar.html file
+        fetch("assets/layout/footer.html")
+          .then((response) => {
+            // Check if the file was fetched successfully
+            if (!response.ok) {
+              throw new Error("Failed to load navbar");
+            }
+            return response.text();
+          })
+          .then((data) => {
+            // Insert the fetched HTML into the navbar-container
+            document.getElementById("footer-container").innerHTML = data;
+          })
+          .catch((error) => {
+            console.error("Error:", error);
           });
-        });
-
-        // Close menu when clicking outside
-        document.addEventListener("click", function (event) {
-          if (
-            !event.target.closest("nav") &&
-            !event.target.closest(".menu-toggle")
-          ) {
-            mainNav.classList.remove("active");
-          }
-        });
       });
     </script>
   </body>

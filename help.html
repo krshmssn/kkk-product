@@ -4,7 +4,15 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="assets/css/help.css" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- FontAwesome CDN for Icons -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      rel="stylesheet"
+    />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <title>Obscura - Thermal Imaging Solutions</title>
   </head>
@@ -15,83 +23,134 @@
         <span>bscura</span>
       </a>
       <button class="menu-toggle" id="menuToggle">☰</button>
-      <div id="navbar-container"></div>
+      <nav id="mainNav">
+        <ul class="navvy">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="products.html">Products</a></li>
+          <li><a href="about.html">About us</a></li>
+          <li><a href="help.html">Help</a></li>
+        </ul>
+      </nav>
+      <script>
+        document.addEventListener("DOMContentLoaded", function () {
+          const menuToggle = document.getElementById("menuToggle");
+          const mainNav = document.getElementById("mainNav");
+
+          menuToggle.addEventListener("click", function () {
+            mainNav.classList.toggle("active");
+          });
+
+          const navLinks = document.querySelectorAll("nav ul li a");
+          navLinks.forEach((link) => {
+            link.addEventListener("click", function () {
+              mainNav.classList.remove("active");
+            });
+          });
+
+          document.addEventListener("click", function (event) {
+            if (
+              !event.target.closest("nav") &&
+              !event.target.closest(".menu-toggle")
+            ) {
+              mainNav.classList.remove("active");
+            }
+          });
+
+          const currentUrl = window.location.pathname;
+          const navItems = document.querySelectorAll("nav ul li a");
+
+          navItems.forEach((link) => {
+            if (link.getAttribute("href") === currentUrl) {
+              link.classList.add("active");
+            }
+          });
+        });
+      </script>
     </header>
 
     <div class="main-content">
-      <h2>Help</h2>
+      <section class="help-center">
+        <h1>Need Assistance? We're here to help!</h1>
+
+        <div class="faq">
+          <h2>Frequently Asked Questions</h2>
+          <div class="faq-item">
+            <button class="faq-question">
+              Can Obscura detect buried bodies?
+            </button>
+            <div class="faq-answer">
+              Obscura can detect surface temperature differences which may
+              indicate buried remains, especially when used shortly after burial
+              or under specific environmental conditions.
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question">
+              Is the thermal camera accurate?
+            </button>
+            <div class="faq-answer">
+              Yes, it provides accurate surface temperature readings, but
+              interpretation must be done carefully by trained personnel.
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question">
+              Do I need internet to use Obscura?
+            </button>
+            <div class="faq-answer">
+              No, Obscura works entirely offline unless you're uploading results
+              to a cloud system for backup.
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-support">
+          <h2>Need more help? Reach out to us!</h2>
+          <ul>
+            <li>
+              <strong>Facebook:</strong>
+              <a
+                href="https://www.facebook.com/profile.php?id=61574506235315&notif_id=1742784833050208&notif_t=follower_invite_accept&ref=notif"
+                target="_blank"
+                ><i class="fab fa-facebook"></i> Obscura</a
+              >
+            </li>
+            <li><strong>Email:</strong> <i class="fas fa-envelope"></i> (WIP)</li>
+            <li><strong>Phone:</strong> <i class="fas fa-phone-alt"></i> +63 994 649 8711</li>
+          </ul>
+        </div>
+      </section>
     </div>
 
     <div id="footer-container"></div>
 
     <script>
-      // Wait for the DOM to be fully loaded
-      document.addEventListener('DOMContentLoaded', function() {
-        // Fetch the navbar.html file
-        fetch('assets/layout/navbar.html')
-          .then(response => {
-            // Check if the file was fetched successfully
-            if (!response.ok) {
-              throw new Error('Failed to load navbar');
-            }
-            return response.text();
-          })
-          .then(data => {
-            // Insert the fetched HTML into the navbar-container
-            document.getElementById('navbar-container').innerHTML = data;
-          })
-          .catch(error => {
-            console.error('Error:', error);
-          });
-      });
-    </script>    
-    <script>
-      // Wait for the DOM to be fully loaded
-      document.addEventListener('DOMContentLoaded', function() {
-        // Fetch the navbar.html file
-        fetch('assets/layout/footer.html')
-          .then(response => {
-            // Check if the file was fetched successfully
-            if (!response.ok) {
-              throw new Error('Failed to load navbar');
-            }
-            return response.text();
-          })
-          .then(data => {
-            // Insert the fetched HTML into the navbar-container
-            document.getElementById('footer-container').innerHTML = data;
-          })
-          .catch(error => {
-            console.error('Error:', error);
-          });
-      });
-    </script>  
-    <script>
-      // Mobile menu toggle functionality
       document.addEventListener("DOMContentLoaded", function () {
-        const menuToggle = document.getElementById("menuToggle");
-        const mainNav = document.getElementById("mainNav");
-
-        menuToggle.addEventListener("click", function () {
-          mainNav.classList.toggle("active");
-        });
-
-        // Close menu when clicking a link
-        const navLinks = document.querySelectorAll("nav ul li a");
-        navLinks.forEach((link) => {
-          link.addEventListener("click", function () {
-            mainNav.classList.remove("active");
+        fetch("assets/layout/footer.html")
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error("Failed to load navbar");
+            }
+            return response.text();
+          })
+          .then((data) => {
+            document.getElementById("footer-container").innerHTML = data;
+          })
+          .catch((error) => {
+            console.error("Error:", error);
           });
-        });
 
-        // Close menu when clicking outside
-        document.addEventListener("click", function (event) {
-          if (
-            !event.target.closest("nav") &&
-            !event.target.closest(".menu-toggle")
-          ) {
-            mainNav.classList.remove("active");
-          }
+        const faqQuestions = document.querySelectorAll(".faq-question");
+
+        faqQuestions.forEach((question) => {
+          question.addEventListener("click", () => {
+            const answer = question.nextElementSibling;
+            if (answer.style.display === "block") {
+              answer.style.display = "none";
+            } else {
+              answer.style.display = "block";
+            }
+          });
         });
       });
     </script>

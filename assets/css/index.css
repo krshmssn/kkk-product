@@ -40,13 +40,6 @@ header {
   margin-bottom: -2px;
 }
 
-.active {
-    color: #000;
-    background-color: #f8f8f8;
-    border-radius: 10%;
-    padding: 10px;
-}
-
 .navvy {
     margin-top: 10px;
 }
@@ -272,7 +265,7 @@ footer {
   }
 
   .app-screenshot {
-    height: 250px;
+    height: 350px;
   }
 
   footer {
@@ -296,7 +289,7 @@ footer {
   }
 
   .app-screenshot {
-    height: 200px;
+    height: 400px;
     margin-right: 10px;
   }
 

@@ -21,16 +21,8 @@
     <div class="main-content">
       <div class="product-showcase">
         <div class="app-screenshots">
-          <img
-            src="assets/images/image1.jpg"
-            alt="Normal Imaging"
-            class="app-screenshot"
-          />
-          <img
-            src="assets/images/image2.jpg"
-            alt="Thermal Imaging"
-            class="app-screenshot"
-          />
+          <img src="assets/images/image1.jpg" alt="Normal Imaging" class="app-screenshot" />
+          <img src="assets/images/image2.jpg" alt="Thermal Imaging" class="app-screenshot" />
         </div>
         <div class="mission-statement">
           <h2>
@@ -49,24 +41,41 @@
           <img src="assets/images/image3.jpg" alt="Thermal Imaging Camera" />
         </div>
       </div>
+
+      <div class="mission-vision container">
+        <div class="row">
+          <div class="col-md-6">
+            <h3>Mission</h3>
+            <p>
+              To create and deploy an efficient human remains detection device that helps forensic professionals and disaster 
+              response teams locate human remains with precision. We plan to develop our technology and establish connections 
+              with investigative organizations in order to make our product more accessible, significant, and known.
+            </p>
+          </div>
+          <div class="col-md-6">
+            <h3>Vision</h3>
+            <p>
+              Through our innovation, we seek to redefine how the world approaches discovery and justice, enabling forensic 
+              professionals and disaster response teams to work with greater efficiency. We want to become a trusted partner 
+              in forensic science and discovery, utilizing innovation to contribute to global peace, justice, and understanding.
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
 
     <div id="footer-container"></div>
 
     <script>
-      // Wait for the DOM to be fully loaded
       document.addEventListener('DOMContentLoaded', function() {
-        // Fetch the navbar.html file
         fetch('assets/layout/navbar.html')
           .then(response => {
-            // Check if the file was fetched successfully
             if (!response.ok) {
               throw new Error('Failed to load navbar');
             }
             return response.text();
           })
           .then(data => {
-            // Insert the fetched HTML into the navbar-container
             document.getElementById('navbar-container').innerHTML = data;
           })
           .catch(error => {
@@ -75,19 +84,15 @@
       });
     </script>    
     <script>
-      // Wait for the DOM to be fully loaded
       document.addEventListener('DOMContentLoaded', function() {
-        // Fetch the navbar.html file
         fetch('assets/layout/footer.html')
           .then(response => {
-            // Check if the file was fetched successfully
             if (!response.ok) {
-              throw new Error('Failed to load navbar');
+              throw new Error('Failed to load footer');
             }
             return response.text();
           })
           .then(data => {
-            // Insert the fetched HTML into the navbar-container
             document.getElementById('footer-container').innerHTML = data;
           })
           .catch(error => {
@@ -96,7 +101,6 @@
       });
     </script>  
     <script>
-      // Mobile menu toggle functionality
       document.addEventListener("DOMContentLoaded", function () {
         const menuToggle = document.getElementById("menuToggle");
         const mainNav = document.getElementById("mainNav");
@@ -105,7 +109,6 @@
           mainNav.classList.toggle("active");
         });
 
-        // Close menu when clicking a link
         const navLinks = document.querySelectorAll("nav ul li a");
         navLinks.forEach((link) => {
           link.addEventListener("click", function () {
@@ -113,12 +116,8 @@
           });
         });
 
-        // Close menu when clicking outside
         document.addEventListener("click", function (event) {
-          if (
-            !event.target.closest("nav") &&
-            !event.target.closest(".menu-toggle")
-          ) {
+          if (!event.target.closest("nav") && !event.target.closest(".menu-toggle")) {
             mainNav.classList.remove("active");
           }
         });
